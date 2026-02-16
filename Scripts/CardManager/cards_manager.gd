@@ -27,7 +27,25 @@ func raycast_check_for_card() -> Node2D:
 		return result[0].collider.get_parent()
 	return null
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if card_being_dragged:
 		var mouse_pos = get_global_mouse_position()
 		card_being_dragged.position = Vector2(clamp(mouse_pos.x,0,screen_size.x),clamp(mouse_pos.y,0,screen_size.y))
+
+func connect_card_signals(card: Node2D) -> void:
+	card.connect("hovered",_on_card_hovered_on)
+	card.connect("hovered_off",_on_card_hovered_off)
+
+func _on_card_hovered_on(card: Node2D) -> void:
+	highlight_card(card,true)
+
+func _on_card_hovered_off(card: Node2D) -> void:
+	highlight_card(card,false)
+
+func highlight_card(card:Node2D,hovered:bool):
+	if hovered:
+		card.scale = Vector2(1.09,1.09)
+		card.z_index = 2
+	else:
+		card.scale = Vector2(1.,1.)
+		card.z_index = 1
