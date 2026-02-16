@@ -1,12 +1,19 @@
 extends Node2D
 
+var card_being_dragged: Node2D
+var screen_size: Vector2
+
+func _ready() -> void:
+	screen_size = get_viewport_rect().size
+
 func _input(event) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.is_pressed():
-			print("Left")
-			raycast_check_for_card()
+			var card = raycast_check_for_card()
+			if card:
+				card_being_dragged = card
 		else:
-			print("Left Released")
+			card_being_dragged = null
 
 func raycast_check_for_card() -> Node2D:
 	var space_state = get_world_2d().direct_space_state
@@ -19,3 +26,8 @@ func raycast_check_for_card() -> Node2D:
 		#print(result[0].collider.get_parent())
 		return result[0].collider.get_parent()
 	return null
+
+func _process(delta: float) -> void:
+	if card_being_dragged:
+		var mouse_pos = get_global_mouse_position()
+		card_being_dragged.position = Vector2(clamp(mouse_pos.x,0,screen_size.x),clamp(mouse_pos.y,0,screen_size.y))
