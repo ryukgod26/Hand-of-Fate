@@ -58,8 +58,10 @@ func _on_card_hovered_off(card: Node2D) -> void:
 func highlight_card(card:Node2D,hovered:bool):
 	if hovered:
 		card.z_index = 2
+		card.scale = Vector2(1.09,1.09)
 	else:
 		card.z_index = 1
+		card.scale = Vector2(1.,1.)
 
 func get_card_with_highest_z_index(cards:Array) -> Node2D:
 	var highest_z_card = cards[0].collider.get_parent()
@@ -74,11 +76,11 @@ func get_card_with_highest_z_index(cards:Array) -> Node2D:
 	return highest_z_card
 
 func start_drag(card:Node2D) -> void:
-	card.scale = Vector2(1.09,1.09)
 	card_being_dragged = card
+	card.scale = Vector2(1.,1.)
 
 func finish_drag() -> void:
-	card_being_dragged.scale = Vector2(1.,1.)
+	card_being_dragged.scale = Vector2(1.09,1.09)
 	var card_slot_found = raycast_check_for_card_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
 		card_being_dragged.position = card_slot_found.position
