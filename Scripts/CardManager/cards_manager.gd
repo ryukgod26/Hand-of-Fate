@@ -109,5 +109,5 @@ func _on_input_manager_left_mouse_btn_pressed() -> void:
 	pass
 
 func _on_input_manager_left_mouse_btn_released() -> void:
-	#print("Input Manager Left Click Released")
-	pass
+	if card_being_dragged:
+		finish_drag()

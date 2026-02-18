@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://bu2hthxx3s1vv"]
+
+[ext_resource type="Script" uid="uid://3ccumtx14yxg" path="res://Scripts/InputManager/input_manager.gd" id="1_ciybh"]
+[ext_resource type="Script" uid="uid://43ttoyi62nre" path="res://Scripts/CardManager/cards_manager.gd" id="1_qxfds"]
+[ext_resource type="Script" uid="uid://ctxuh8krilimn" path="res://Scripts/PlayerHand/player_hand.gd" id="3_i1e5p"]
+[ext_resource type="PackedScene" uid="uid://dlyktp4lwpkah" path="res://Scenes/Slot/slot.tscn" id="3_qikps"]
+[ext_resource type="PackedScene" uid="uid://dpisoycgfp2bg" path="res://Scenes/Deck/deck.tscn" id="4_i1e5p"]
+
+[node name="Game" type="Node2D"]
+
+[node name="InputManager" type="Node2D" parent="."]
+script = ExtResource("1_ciybh")
+
+[node name="CardsManager" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("1_qxfds")
+
+[node name="CardSlots" type="Node2D" parent="."]
+
+[node name="Slot" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(161, 121)
+
+[node name="Slot2" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(358, 113)
+
+[node name="PlayerHand" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_i1e5p")
+
+[node name="Deck" parent="." instance=ExtResource("4_i1e5p")]
+unique_name_in_owner = true
+position = Vector2(150, 890)
+
+[connection signal="left_mouse_btn_pressed" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_pressed"]
+[connection signal="left_mouse_btn_released" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_released"]

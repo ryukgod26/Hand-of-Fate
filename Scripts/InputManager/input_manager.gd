@@ -21,17 +21,16 @@ func raycast_check():
 	var parameters = PhysicsPointQueryParameters2D.new()
 	parameters.position = get_global_mouse_position()
 	parameters.collide_with_areas = true
-	parameters.collision_mask = 4
+	#parameters.collision_mask = 4
 	var result = space_state.intersect_point(parameters)
 	#print("Test")
 	print(result)
 	if result.size() > 0:
 		var result_collidion_mask = result[0].collider.collision_mask
-		print("Collision Mask ",result_collidion_mask)
 		if result_collidion_mask & cards_manager.COLLISION_MASK_CARD:
+			print("Dragging Card")
 			var card_found = result[0].collider.get_parent()
 			if card_found:
 				cards_manager.start_drag(card_found)
 		elif result_collidion_mask & COLLISION_MASK_DECK:
-			print("Draw Card from deck")
 			deck.draw_card()
