@@ -10,15 +10,15 @@ var is_hovering_on_card: bool
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
 
-func _input(event) -> void:
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.is_pressed():
-			var card = raycast_check_for_card()
-			if card:
-				start_drag(card)
-		else:
-			if card_being_dragged:
-				finish_drag()
+#func _input(event) -> void:
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		#if event.is_pressed():
+			#var card = raycast_check_for_card()
+			#if card:
+				#start_drag(card)
+		#else:
+			#if card_being_dragged:
+				#finish_drag()
 
 func raycast_check_for_card() -> Node2D:
 	var space_state = get_world_2d().direct_space_state
@@ -100,3 +100,13 @@ func raycast_check_for_card_slot() -> Node2D:
 		#return result[0].collider.get_parent()
 		return result[0].collider.get_parent()
 	return null
+
+
+func _on_input_manager_left_mouse_btn_pressed() -> void:
+	#print("Input Manager Left Click Pressed")
+	pass
+
+
+func _on_input_manager_left_mouse_btn_released() -> void:
+	#print("Input Manager Left Click Released")
+	pass
