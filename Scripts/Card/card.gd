@@ -14,3 +14,6 @@ func _on_area_2d_mouse_entered() -> void:
 
 func _on_area_2d_mouse_exited() -> void:
 	hovered_off.emit(self)
+
+func play_flip_animation():
+	$AnimationPlayer.play("card_flip")

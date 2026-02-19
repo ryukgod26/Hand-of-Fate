@@ -24,11 +24,11 @@ func raycast_check():
 	#parameters.collision_mask = 4
 	var result = space_state.intersect_point(parameters)
 	#print("Test")
-	print(result)
+	#print(result)
 	if result.size() > 0:
 		var result_collidion_mask = result[0].collider.collision_mask
 		if result_collidion_mask & cards_manager.COLLISION_MASK_CARD:
-			print("Dragging Card")
+			#print("Dragging Card")
 			var card_found = result[0].collider.get_parent()
 			if card_found:
 				cards_manager.start_drag(card_found)
