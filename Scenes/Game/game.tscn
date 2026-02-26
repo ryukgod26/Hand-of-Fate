@@ -18,10 +18,24 @@ script = ExtResource("1_qxfds")
 [node name="CardSlots" type="Node2D" parent="."]
 
 [node name="Slot" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(161, 121)
+position = Vector2(900, 540)
+scale = Vector2(0.6, 0.6)
 
 [node name="Slot2" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(358, 113)
+position = Vector2(960, 540)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot3" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1020, 540)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot4" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1080, 540)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot5" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1140, 540)
+scale = Vector2(0.6, 0.6)
 
 [node name="PlayerHand" type="Node2D" parent="."]
 unique_name_in_owner = true
@@ -30,6 +44,7 @@ script = ExtResource("3_i1e5p")
 [node name="Deck" parent="." instance=ExtResource("4_i1e5p")]
 unique_name_in_owner = true
 position = Vector2(150, 890)
+scale = Vector2(0.8, 0.8)
 
 [connection signal="left_mouse_btn_pressed" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_pressed"]
 [connection signal="left_mouse_btn_released" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_released"]

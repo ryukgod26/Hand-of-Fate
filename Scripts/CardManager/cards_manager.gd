@@ -2,6 +2,8 @@ extends Node2D
 
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_CARD_SLOT = 2
+const DEFAULT_CARD_SCALE = 0.8
+const CARD_ENLARGED_SCALE = 0.87
 
 var card_being_dragged: Node2D
 var screen_size: Vector2
@@ -58,10 +60,10 @@ func _on_card_hovered_off(card: Node2D) -> void:
 func highlight_card(card:Node2D,hovered:bool):
 	if hovered:
 		card.z_index = 2
-		card.scale = Vector2(1.09,1.09)
+		card.scale = Vector2(CARD_ENLARGED_SCALE,CARD_ENLARGED_SCALE)
 	else:
 		card.z_index = 1
-		card.scale = Vector2(1.,1.)
+		card.scale = Vector2(DEFAULT_CARD_SCALE,DEFAULT_CARD_SCALE)
 
 func get_card_with_highest_z_index(cards:Array) -> Node2D:
 	var highest_z_card = cards[0].collider.get_parent()
@@ -77,10 +79,10 @@ func get_card_with_highest_z_index(cards:Array) -> Node2D:
 
 func start_drag(card:Node2D) -> void:
 	card_being_dragged = card
-	card.scale = Vector2(1.,1.)
+	card.scale = Vector2(DEFAULT_CARD_SCALE,DEFAULT_CARD_SCALE)
 
 func finish_drag() -> void:
-	card_being_dragged.scale = Vector2(1.09,1.09)
+	card_being_dragged.scale = Vector2(CARD_ENLARGED_SCALE,CARD_ENLARGED_SCALE)
 	var card_slot_found = raycast_check_for_card_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
 		%PlayerHand.remove_card_from_hand(card_being_dragged)
