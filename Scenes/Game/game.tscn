@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bu2hthxx3s1vv"]
+[gd_scene load_steps=7 format=3 uid="uid://bu2hthxx3s1vv"]
 
 [ext_resource type="Script" uid="uid://3ccumtx14yxg" path="res://Scripts/InputManager/input_manager.gd" id="1_ciybh"]
 [ext_resource type="Script" uid="uid://43ttoyi62nre" path="res://Scripts/CardManager/cards_manager.gd" id="1_qxfds"]
 [ext_resource type="Script" uid="uid://ctxuh8krilimn" path="res://Scripts/PlayerHand/player_hand.gd" id="3_i1e5p"]
 [ext_resource type="PackedScene" uid="uid://dlyktp4lwpkah" path="res://Scenes/Slot/slot.tscn" id="3_qikps"]
 [ext_resource type="PackedScene" uid="uid://dpisoycgfp2bg" path="res://Scenes/Deck/deck.tscn" id="4_i1e5p"]
+[ext_resource type="Texture2D" uid="uid://bxisyrvwgodhf" path="res://assets/Aseprite/Deck/test_deck.png" id="6_flgk0"]
 
 [node name="Game" type="Node2D"]
 
@@ -90,9 +91,36 @@ scale = Vector2(1.2, 1.2)
 
 [node name="OpponentDeck" type="Node2D" parent="."]
 
-[node name="Deck" parent="OpponentDeck" instance=ExtResource("4_i1e5p")]
-position = Vector2(150, 290)
+[node name="Deck" type="Node2D" parent="OpponentDeck"]
+z_index = -1
+position = Vector2(1780, 125)
 scale = Vector2(1.2, 1.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="OpponentDeck/Deck"]
+texture = ExtResource("6_flgk0")
+
+[node name="Label" type="Label" parent="OpponentDeck/Deck"]
+texture_filter = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -11.5
+offset_right = 20.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "0"
+horizontal_alignment = 1
+
+[node name="EndTurnBtn" type="Button" parent="."]
+offset_left = 300.0
+offset_top = 570.0
+offset_right = 378.0
+offset_bottom = 601.0
+text = "End Turn"
 
 [connection signal="left_mouse_btn_pressed" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_pressed"]
 [connection signal="left_mouse_btn_released" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_released"]
