@@ -2,8 +2,8 @@ extends Node2D
 
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_CARD_SLOT = 2
-const DEFAULT_CARD_SCALE = 0.8
-const CARD_ENLARGED_SCALE = 0.87
+const DEFAULT_CARD_SCALE = 1.2
+const CARD_ENLARGED_SCALE = 1.27
 
 var card_being_dragged: Node2D
 var screen_size: Vector2

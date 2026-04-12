@@ -15,26 +15,68 @@ script = ExtResource("1_ciybh")
 unique_name_in_owner = true
 script = ExtResource("1_qxfds")
 
+[node name="OpponentCardSlots" type="Node2D" parent="."]
+
+[node name="Slot" parent="OpponentCardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(900, 420)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot2" parent="OpponentCardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(960, 420)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot3" parent="OpponentCardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1020, 420)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot4" parent="OpponentCardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1080, 420)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot5" parent="OpponentCardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1140, 420)
+scale = Vector2(0.6, 0.6)
+
 [node name="CardSlots" type="Node2D" parent="."]
 
 [node name="Slot" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(900, 540)
+position = Vector2(900, 620)
 scale = Vector2(0.6, 0.6)
 
 [node name="Slot2" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(960, 540)
+position = Vector2(960, 620)
 scale = Vector2(0.6, 0.6)
 
 [node name="Slot3" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(1020, 540)
+position = Vector2(1020, 620)
 scale = Vector2(0.6, 0.6)
 
 [node name="Slot4" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(1080, 540)
+position = Vector2(1080, 620)
 scale = Vector2(0.6, 0.6)
 
 [node name="Slot5" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(1140, 540)
+position = Vector2(1140, 620)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot6" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(900, 720)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot7" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(960, 720)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot8" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1020, 720)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot9" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1080, 720)
+scale = Vector2(0.6, 0.6)
+
+[node name="Slot10" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1140, 720)
 scale = Vector2(0.6, 0.6)
 
 [node name="PlayerHand" type="Node2D" parent="."]
@@ -44,7 +86,13 @@ script = ExtResource("3_i1e5p")
 [node name="Deck" parent="." instance=ExtResource("4_i1e5p")]
 unique_name_in_owner = true
 position = Vector2(150, 890)
-scale = Vector2(0.8, 0.8)
+scale = Vector2(1.2, 1.2)
+
+[node name="OpponentDeck" type="Node2D" parent="."]
+
+[node name="Deck" parent="OpponentDeck" instance=ExtResource("4_i1e5p")]
+position = Vector2(150, 290)
+scale = Vector2(1.2, 1.2)
 
 [connection signal="left_mouse_btn_pressed" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_pressed"]
 [connection signal="left_mouse_btn_released" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_released"]
