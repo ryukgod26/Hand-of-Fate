@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://cugw036cy4yne"]
+
+[ext_resource type="Script" uid="uid://dys3p0nlc0t44" path="res://Scripts/Slot/slot.gd" id="1_t7wcr"]
+[ext_resource type="Texture2D" uid="uid://cc883syqxjn7b" path="res://assets/Aseprite/Slots/test_slot.png" id="2_sjgck"]
+
+[node name="Slot" type="Node2D"]
+scale = Vector2(1.3, 1.3)
+script = ExtResource("1_t7wcr")
+
+[node name="SlotImage" type="Sprite2D" parent="."]
+texture = ExtResource("2_sjgck")

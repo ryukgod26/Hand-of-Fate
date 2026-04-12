@@ -89,17 +89,19 @@ func finish_drag() -> void:
 	var card_slot_found = raycast_check_for_card_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
 		
-		if card_being_dragged.card_type == "Monster".capitalize():
-			
-			card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE,CARD_SMALLER_SCALE)
-			card_being_dragged.card_slot = card_slot_found
-			card_being_dragged.z_index = -1
-			%PlayerHand.remove_card_from_hand(card_being_dragged)
-			card_being_dragged.position = card_slot_found.position
-			card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-			card_slot_found.card_in_slot = true
-	else:
-		%PlayerHand.add_card_to_hand(card_being_dragged,%PlayerHand.DEFAULT_CARD_DRAW_SPEED)
+		if card_being_dragged.card_type.capitalize() == card_slot_found.card_slot_type.capitalize():
+			if not play_monster_card_this_turn:
+				card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE,CARD_SMALLER_SCALE)
+				card_being_dragged.card_slot = card_slot_found
+				card_being_dragged.z_index = -1
+				is_hovering_on_card = false
+				%PlayerHand.remove_card_from_hand(card_being_dragged)
+				card_being_dragged.position = card_slot_found.position
+				card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+				card_slot_found.card_in_slot = true
+				card_being_dragged = null
+				return
+	%PlayerHand.add_card_to_hand(card_being_dragged,%PlayerHand.DEFAULT_CARD_DRAW_SPEED)
 	card_being_dragged = null
 
 func raycast_check_for_card_slot() -> Node2D:
