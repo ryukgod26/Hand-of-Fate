@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bu2hthxx3s1vv"]
+[gd_scene load_steps=9 format=3 uid="uid://bu2hthxx3s1vv"]
 
 [ext_resource type="Script" uid="uid://3ccumtx14yxg" path="res://Scripts/InputManager/input_manager.gd" id="1_ciybh"]
 [ext_resource type="Script" uid="uid://43ttoyi62nre" path="res://Scripts/CardManager/cards_manager.gd" id="1_qxfds"]
 [ext_resource type="Script" uid="uid://ctxuh8krilimn" path="res://Scripts/PlayerHand/player_hand.gd" id="3_i1e5p"]
 [ext_resource type="PackedScene" uid="uid://dlyktp4lwpkah" path="res://Scenes/Slot/slot.tscn" id="3_qikps"]
 [ext_resource type="PackedScene" uid="uid://dpisoycgfp2bg" path="res://Scenes/Deck/deck.tscn" id="4_i1e5p"]
+[ext_resource type="Script" uid="uid://cm6bja380oeql" path="res://Scripts/Slot/MonsterCardSlot.gd" id="4_vifcx"]
+[ext_resource type="Script" uid="uid://dldvaq5v511mj" path="res://Scripts/Slot/MagicCardSlot.gd" id="5_xfil1"]
 [ext_resource type="Texture2D" uid="uid://bxisyrvwgodhf" path="res://assets/Aseprite/Deck/test_deck.png" id="6_flgk0"]
 
 [node name="Game" type="Node2D"]
@@ -15,6 +17,58 @@ script = ExtResource("1_ciybh")
 [node name="CardsManager" type="Node2D" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_qxfds")
+
+[node name="CardSlots" type="Node2D" parent="."]
+
+[node name="Slot" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(900, 620)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("4_vifcx")
+
+[node name="Slot2" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(960, 620)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("4_vifcx")
+
+[node name="Slot3" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1020, 620)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("4_vifcx")
+
+[node name="Slot4" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1080, 620)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("4_vifcx")
+
+[node name="Slot5" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1140, 620)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("4_vifcx")
+
+[node name="Slot6" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(900, 720)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("5_xfil1")
+
+[node name="Slot7" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(960, 720)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("5_xfil1")
+
+[node name="Slot8" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1020, 720)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("5_xfil1")
+
+[node name="Slot9" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1080, 720)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("5_xfil1")
+
+[node name="Slot10" parent="CardSlots" instance=ExtResource("3_qikps")]
+position = Vector2(1140, 720)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("5_xfil1")
 
 [node name="OpponentCardSlots" type="Node2D" parent="."]
 
@@ -56,48 +110,6 @@ scale = Vector2(0.6, 0.6)
 
 [node name="Slot10" parent="OpponentCardSlots" instance=ExtResource("3_qikps")]
 position = Vector2(1140, 320)
-scale = Vector2(0.6, 0.6)
-
-[node name="CardSlots" type="Node2D" parent="."]
-
-[node name="Slot" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(900, 620)
-scale = Vector2(0.6, 0.6)
-
-[node name="Slot2" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(960, 620)
-scale = Vector2(0.6, 0.6)
-
-[node name="Slot3" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(1020, 620)
-scale = Vector2(0.6, 0.6)
-
-[node name="Slot4" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(1080, 620)
-scale = Vector2(0.6, 0.6)
-
-[node name="Slot5" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(1140, 620)
-scale = Vector2(0.6, 0.6)
-
-[node name="Slot6" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(900, 720)
-scale = Vector2(0.6, 0.6)
-
-[node name="Slot7" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(960, 720)
-scale = Vector2(0.6, 0.6)
-
-[node name="Slot8" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(1020, 720)
-scale = Vector2(0.6, 0.6)
-
-[node name="Slot9" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(1080, 720)
-scale = Vector2(0.6, 0.6)
-
-[node name="Slot10" parent="CardSlots" instance=ExtResource("3_qikps")]
-position = Vector2(1140, 720)
 scale = Vector2(0.6, 0.6)
 
 [node name="PlayerHand" type="Node2D" parent="."]

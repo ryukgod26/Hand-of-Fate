@@ -9,6 +9,7 @@ const CARD_SMALLER_SCALE = 0.6
 var card_being_dragged: Node2D
 var screen_size: Vector2
 var is_hovering_on_card: bool
+var play_monster_card_this_turn := false
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -87,13 +88,16 @@ func finish_drag() -> void:
 	card_being_dragged.scale = Vector2(CARD_ENLARGED_SCALE,CARD_ENLARGED_SCALE)
 	var card_slot_found = raycast_check_for_card_slot()
 	if card_slot_found and not card_slot_found.card_in_slot:
-		card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE,CARD_SMALLER_SCALE)
-		card_being_dragged.card_slot = card_slot_found
-		card_being_dragged.z_index = -1
-		%PlayerHand.remove_card_from_hand(card_being_dragged)
-		card_being_dragged.position = card_slot_found.position
-		card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
-		card_slot_found.card_in_slot = true
+		
+		if card_being_dragged.card_type == "Monster".capitalize():
+			
+			card_being_dragged.scale = Vector2(CARD_SMALLER_SCALE,CARD_SMALLER_SCALE)
+			card_being_dragged.card_slot = card_slot_found
+			card_being_dragged.z_index = -1
+			%PlayerHand.remove_card_from_hand(card_being_dragged)
+			card_being_dragged.position = card_slot_found.position
+			card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+			card_slot_found.card_in_slot = true
 	else:
 		%PlayerHand.add_card_to_hand(card_being_dragged,%PlayerHand.DEFAULT_CARD_DRAW_SPEED)
 	card_being_dragged = null
