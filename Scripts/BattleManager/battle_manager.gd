@@ -1,6 +1,6 @@
 extends Node
 
-@onready var end_turn_btn:Button = %EEndTurnBtn
+@onready var end_turn_btn:Button = %EndTurnBtn
 
 var empty_monster_card_slots = []
 
