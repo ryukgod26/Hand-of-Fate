@@ -1,15 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://bu2hthxx3s1vv"]
+[gd_scene load_steps=13 format=3 uid="uid://bu2hthxx3s1vv"]
 
 [ext_resource type="Script" uid="uid://3ccumtx14yxg" path="res://Scripts/InputManager/input_manager.gd" id="1_ciybh"]
 [ext_resource type="Script" uid="uid://43ttoyi62nre" path="res://Scripts/CardManager/cards_manager.gd" id="1_qxfds"]
-[ext_resource type="Script" uid="uid://ctxuh8krilimn" path="res://Scripts/PlayerHand/player_hand.gd" id="3_i1e5p"]
+[ext_resource type="Script" uid="uid://ctxuh8krilimn" path="res://Scripts/Hands/player_hand.gd" id="3_i1e5p"]
 [ext_resource type="PackedScene" uid="uid://dlyktp4lwpkah" path="res://Scenes/Slot/slot.tscn" id="3_qikps"]
 [ext_resource type="PackedScene" uid="uid://dpisoycgfp2bg" path="res://Scenes/Deck/deck.tscn" id="4_i1e5p"]
 [ext_resource type="Script" uid="uid://cm6bja380oeql" path="res://Scripts/Slot/MonsterCardSlot.gd" id="4_vifcx"]
 [ext_resource type="Script" uid="uid://dldvaq5v511mj" path="res://Scripts/Slot/MagicCardSlot.gd" id="5_xfil1"]
 [ext_resource type="Texture2D" uid="uid://bxisyrvwgodhf" path="res://assets/Aseprite/Deck/test_deck.png" id="6_flgk0"]
 [ext_resource type="PackedScene" uid="uid://cugw036cy4yne" path="res://Scenes/Slot/EnemyCardSlot.tscn" id="6_huoen"]
+[ext_resource type="Script" uid="uid://bto2st656h0j1" path="res://Scripts/Hands/enemy_hand.gd" id="8_qtymf"]
 [ext_resource type="Script" uid="uid://6gda0ryn6ien" path="res://Scripts/BattleManager/battle_manager.gd" id="10_7jvlm"]
+[ext_resource type="Script" uid="uid://b0fdpetltfjy5" path="res://Scripts/Deck/enemy_deck.gd" id="10_ypmwd"]
 
 [node name="Game" type="Node2D"]
 
@@ -128,12 +130,18 @@ scale = Vector2(0.6, 0.6)
 unique_name_in_owner = true
 script = ExtResource("3_i1e5p")
 
+[node name="EnemyHand" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_qtymf")
+
 [node name="Deck" parent="." instance=ExtResource("4_i1e5p")]
 unique_name_in_owner = true
 position = Vector2(150, 890)
 scale = Vector2(1.2, 1.2)
 
 [node name="OpponentDeck" type="Node2D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("10_ypmwd")
 
 [node name="Sprite2D" type="Sprite2D" parent="OpponentDeck"]
 position = Vector2(1780, 125)
