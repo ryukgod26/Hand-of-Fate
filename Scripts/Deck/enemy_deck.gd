@@ -5,7 +5,7 @@ const CARD_DRAWN_SPEED := 0.2
 const STARTING_HAND_SIZE = 3
 
 @onready var cards_database = preload("res://Scripts/CardManager/cards_database.gd")
-var card_scene = preload("res://Scenes/Cards/card.tscn")
+var card_scene = preload("res://Scenes/Cards/Enemycard.tscn")
 var player_deck = ["Knight","Archer","Demon","Knight","Archer","Demon"]
 var drawn_card_this_turn := false
 
@@ -39,4 +39,3 @@ func draw_card():
 	new_card.name = "Card"
 	%CardsManager.add_child(new_card)
 	%EnemyHand.add_card_to_hand(new_card,CARD_DRAWN_SPEED)
-	new_card.play_flip_animation()
