@@ -26,7 +26,7 @@ func update_hand_positions() -> void:
 
 func calculate_card_position(idx) -> float:
 	var total_width = (player_hand.size() - 1 )*CARD_WIDTH
-	return center_screen_x + idx * CARD_WIDTH -  total_width / 2
+	return center_screen_x - idx * CARD_WIDTH +  total_width / 2
 
 func animate_card_to_position(card,pos,speed):
 	var tween = create_tween()

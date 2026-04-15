@@ -7,21 +7,16 @@ const STARTING_HAND_SIZE = 3
 @onready var cards_database = preload("res://Scripts/CardManager/cards_database.gd")
 var card_scene = preload("res://Scenes/Cards/Enemycard.tscn")
 var player_deck = ["Knight","Archer","Demon","Knight","Archer","Demon"]
-var drawn_card_this_turn := false
 
 func _ready() -> void:
 	player_deck.shuffle()
 	$Label.text = str(player_deck.size())
 	
 	for i in range(STARTING_HAND_SIZE):
-		drawn_card_this_turn = false
 		draw_card()
 
 func draw_card():
-	if drawn_card_this_turn:
-		return
 	
-	drawn_card_this_turn = true
 	var card_drawn = player_deck[0]
 	player_deck.erase(card_drawn)
 	
