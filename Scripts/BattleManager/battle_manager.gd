@@ -1,5 +1,8 @@
 extends Node
 
+const SMALL_CARD_SCALE = 0.6
+const CARD_MOVE_SPEED = 0.2
+
 @onready var end_turn_btn:Button = %EndTurnBtn
 
 var empty_monster_card_slots = []
@@ -23,6 +26,23 @@ func enemy_turn() -> void:
 	if empty_monster_card_slots.size() == 0:
 		end_enemy_turn()
 		return
+		
+	var enemy_hand = %EnemyHand.enemy_hand
+	if enemy_hand.size() == 0:
+		end_enemy_turn()
+	var random_empty_monster_card_slot = empty_monster_card_slots[randi_range(0,empty_monster_card_slots.size())]
+	empty_monster_card_slots.erase(random_empty_monster_card_slot)
+	
+	var max_attack_card = enemy_hand[0]
+	for card in enemy_hand:
+		if card.attack > max_attack_card:
+			max_attack_card = card
+	
+	var tween = create_tween()
+	tween.parallel()
+	tween.tween_property(max_attack_card,"global_position",random_empty_monster_card_slot.global_position,CARD_MOVE_SPEED)
+	tween.tween_property(max_attack_card,"scale",Vector2(SMALL_CARD_SCALE,SMALL_CARD_SCALE),CARD_MOVE_SPEED)
+	max_attack_card.play_flip_animation()
 
 	end_enemy_turn()
 
