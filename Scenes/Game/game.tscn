@@ -84,45 +84,45 @@ position = Vector2(1140, 720)
 scale = Vector2(0.6, 0.6)
 script = ExtResource("5_xfil1")
 
-[node name="OpponentCardSlots" type="Node2D" parent="."]
+[node name="EnemyCardSlots" type="Node2D" parent="."]
 
-[node name="Slot1" parent="OpponentCardSlots" instance=ExtResource("6_huoen")]
+[node name="Slot1" parent="EnemyCardSlots" instance=ExtResource("6_huoen")]
 position = Vector2(900, 420)
 scale = Vector2(0.6, 0.6)
 
-[node name="Slot2" parent="OpponentCardSlots" instance=ExtResource("6_huoen")]
+[node name="Slot2" parent="EnemyCardSlots" instance=ExtResource("6_huoen")]
 position = Vector2(960, 420)
 scale = Vector2(0.6, 0.6)
 
-[node name="Slot3" parent="OpponentCardSlots" instance=ExtResource("6_huoen")]
+[node name="Slot3" parent="EnemyCardSlots" instance=ExtResource("6_huoen")]
 position = Vector2(1020, 420)
 scale = Vector2(0.6, 0.6)
 
-[node name="Slot4" parent="OpponentCardSlots" instance=ExtResource("6_huoen")]
+[node name="Slot4" parent="EnemyCardSlots" instance=ExtResource("6_huoen")]
 position = Vector2(1080, 420)
 scale = Vector2(0.6, 0.6)
 
-[node name="Slot5" parent="OpponentCardSlots" instance=ExtResource("6_huoen")]
+[node name="Slot5" parent="EnemyCardSlots" instance=ExtResource("6_huoen")]
 position = Vector2(1140, 420)
 scale = Vector2(0.6, 0.6)
 
-[node name="Slot6" parent="OpponentCardSlots" instance=ExtResource("6_huoen")]
+[node name="Slot6" parent="EnemyCardSlots" instance=ExtResource("6_huoen")]
 position = Vector2(900, 320)
 scale = Vector2(0.6, 0.6)
 
-[node name="Slot7" parent="OpponentCardSlots" instance=ExtResource("6_huoen")]
+[node name="Slot7" parent="EnemyCardSlots" instance=ExtResource("6_huoen")]
 position = Vector2(960, 320)
 scale = Vector2(0.6, 0.6)
 
-[node name="Slot8" parent="OpponentCardSlots" instance=ExtResource("6_huoen")]
+[node name="Slot8" parent="EnemyCardSlots" instance=ExtResource("6_huoen")]
 position = Vector2(1020, 320)
 scale = Vector2(0.6, 0.6)
 
-[node name="Slot9" parent="OpponentCardSlots" instance=ExtResource("6_huoen")]
+[node name="Slot9" parent="EnemyCardSlots" instance=ExtResource("6_huoen")]
 position = Vector2(1080, 320)
 scale = Vector2(0.6, 0.6)
 
-[node name="Slot10" parent="OpponentCardSlots" instance=ExtResource("6_huoen")]
+[node name="Slot10" parent="EnemyCardSlots" instance=ExtResource("6_huoen")]
 position = Vector2(1140, 320)
 scale = Vector2(0.6, 0.6)
 
@@ -139,16 +139,16 @@ unique_name_in_owner = true
 position = Vector2(150, 890)
 scale = Vector2(1.2, 1.2)
 
-[node name="OpponentDeck" type="Node2D" parent="."]
+[node name="EnemyDeck" type="Node2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(1780, 125)
 script = ExtResource("10_ypmwd")
 
-[node name="Sprite2D" type="Sprite2D" parent="OpponentDeck"]
+[node name="Sprite2D" type="Sprite2D" parent="EnemyDeck"]
 scale = Vector2(1.2, 1.2)
 texture = ExtResource("6_flgk0")
 
-[node name="Label" type="Label" parent="OpponentDeck"]
+[node name="Label" type="Label" parent="EnemyDeck"]
 texture_filter = 2
 anchors_preset = 8
 anchor_left = 0.5
