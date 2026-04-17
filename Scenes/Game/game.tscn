@@ -173,6 +173,7 @@ offset_bottom = 601.0
 text = "End Turn"
 
 [node name="BattleManager" type="Node" parent="."]
+unique_name_in_owner = true
 script = ExtResource("10_7jvlm")
 
 [connection signal="left_mouse_btn_pressed" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_pressed"]

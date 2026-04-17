@@ -40,3 +40,6 @@ func draw_card():
 	%CardsManager.add_child(new_card)
 	%PlayerHand.add_card_to_hand(new_card,CARD_DRAWN_SPEED)
 	new_card.play_flip_animation()
+
+func reset_draw() -> void:
+	drawn_card_this_turn = false

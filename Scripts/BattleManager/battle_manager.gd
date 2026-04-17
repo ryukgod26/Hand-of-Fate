@@ -6,6 +6,8 @@ const CARD_MOVE_SPEED = 0.2
 @onready var end_turn_btn:Button = %EndTurnBtn
 
 var empty_monster_card_slots = []
+var opponent_cards_on_battlefield = []
+var player_cards_on_battlefield = []
 
 func _ready() -> void:
 	for card_slot in $"../EnemyCardSlots".get_children():
@@ -23,11 +25,13 @@ func enemy_turn() -> void:
 		$"../EnemyDeck".draw_card()
 		await get_tree().create_timer(1.0).timeout
 	
-	if empty_monster_card_slots.size() == 0:
-		end_enemy_turn()
-		return
-
-	await try_max_dmg_play_card()
+	if empty_monster_card_slots.size() != 0:
+		await try_max_dmg_play_card()
+		
+	if opponent_cards_on_battlefield.size() != 0:
+		var enemy_cards_to_attack = opponent_cards_on_battlefield.duplicate()
+		for card in enemy_cards_to_attack:
+			pass
 	
 	end_enemy_turn()
 
@@ -50,6 +54,7 @@ func try_max_dmg_play_card() -> void:
 	max_attack_card.play_flip_animation()
 	
 	%EnemyHand.remove_card_from_hand(max_attack_card)
+	opponent_cards_on_battlefield.append(max_attack_card)
 	await get_tree().create_timer(1.0).timeout
 	
 

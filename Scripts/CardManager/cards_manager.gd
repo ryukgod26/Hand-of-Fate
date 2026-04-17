@@ -99,6 +99,7 @@ func finish_drag() -> void:
 				card_being_dragged.position = card_slot_found.position
 				card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 				card_slot_found.card_in_slot = true
+				%BattleManager.player_cards_on_battlefield.append(card_being_dragged)
 				card_being_dragged = null
 				return
 	%PlayerHand.add_card_to_hand(card_being_dragged,%PlayerHand.DEFAULT_CARD_DRAW_SPEED)
