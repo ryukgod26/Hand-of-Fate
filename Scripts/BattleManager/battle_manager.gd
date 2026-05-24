@@ -13,7 +13,6 @@ func _ready() -> void:
 	for card_slot in $"../EnemyCardSlots".get_children():
 		empty_monster_card_slots.append(card_slot)
 
-
 func _on_end_turn_btn_pressed() -> void:
 	enemy_turn()
 
@@ -31,9 +30,25 @@ func enemy_turn() -> void:
 	if opponent_cards_on_battlefield.size() != 0:
 		var enemy_cards_to_attack = opponent_cards_on_battlefield.duplicate()
 		for card in enemy_cards_to_attack:
-			pass
-	
+			if player_cards_on_battlefield.size() != 0:
+				attack()
+			else:
+				direct_attack(card,"Opponent")
 	end_enemy_turn()
+
+func attack() -> void:
+	print("Attack")
+
+func direct_attack(attacking_card,attacker: String) -> void:
+	var new_pos_y
+	if attacker.to_lower() == "opponent":
+		new_pos_y = 1080
+	else:
+		new_pos_y = 0
+	
+	var new_pos = Vector2(attacking_card.position.x, new_pos_y)
+	var tween = create_tween()
+	tween.tween_property(attacking_card,"global_position",new_pos,CARD_MOVE_SPEED)
 
 func try_max_dmg_play_card() -> void:
 	var enemy_hand = %EnemyHand.enemy_hand
@@ -56,9 +71,11 @@ func try_max_dmg_play_card() -> void:
 	%EnemyHand.remove_card_from_hand(max_attack_card)
 	opponent_cards_on_battlefield.append(max_attack_card)
 	await get_tree().create_timer(1.0).timeout
-	
 
 func end_enemy_turn() -> void:
 	%Deck.reset_draw()
 	end_turn_btn.visible = true
 	end_turn_btn.disabled = false
+
+func wait(wait_time):
+	pass

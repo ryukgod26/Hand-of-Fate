@@ -32,7 +32,6 @@ func animate_card_to_position(card,pos,speed):
 	var tween = create_tween()
 	tween.tween_property(card,"global_position",pos,speed)
 
-
 func remove_card_from_hand(card):
 	enemy_hand.erase(card)
 	update_hand_positions()
