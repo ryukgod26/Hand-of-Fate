@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bu2hthxx3s1vv"]
+[gd_scene load_steps=14 format=3 uid="uid://bu2hthxx3s1vv"]
 
 [ext_resource type="Script" uid="uid://3ccumtx14yxg" path="res://Scripts/InputManager/input_manager.gd" id="1_ciybh"]
 [ext_resource type="Script" uid="uid://43ttoyi62nre" path="res://Scripts/CardManager/cards_manager.gd" id="1_qxfds"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" uid="uid://bto2st656h0j1" path="res://Scripts/Hands/enemy_hand.gd" id="8_qtymf"]
 [ext_resource type="Script" uid="uid://6gda0ryn6ien" path="res://Scripts/BattleManager/battle_manager.gd" id="10_7jvlm"]
 [ext_resource type="Script" uid="uid://b0fdpetltfjy5" path="res://Scripts/Deck/enemy_deck.gd" id="10_ypmwd"]
+[ext_resource type="Texture2D" uid="uid://cc883syqxjn7b" path="res://assets/Aseprite/Slots/test_slot.png" id="13_oejk7"]
 
 [node name="Game" type="Node2D"]
 
@@ -193,8 +194,18 @@ scale = Vector2(2, 2)
 text = "0"
 
 [node name="PlayerDiscard" type="Node2D" parent="."]
+position = Vector2(1500, 660)
+scale = Vector2(0.6, 0.6)
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerDiscard"]
+texture = ExtResource("13_oejk7")
+
+[node name="EnemyDiscard" type="Node2D" parent="."]
+position = Vector2(400, 270)
+scale = Vector2(0.6, 0.6)
+
+[node name="Sprite2D" type="Sprite2D" parent="EnemyDiscard"]
+texture = ExtResource("13_oejk7")
 
 [connection signal="left_mouse_btn_pressed" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_pressed"]
 [connection signal="left_mouse_btn_released" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_released"]

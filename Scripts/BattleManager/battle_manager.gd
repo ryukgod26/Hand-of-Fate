@@ -61,16 +61,26 @@ func attack(attacking_card, defending_card, attacker) -> void:
 	await get_tree().create_timer(1.0).timeout
 	attacking_card.z_index = 0
 	
+	var card_destroyed = false
 	if attacking_card.health <= 0:
 		destroy_card(attacking_card, attacker)
+		card_destroyed = true
 	if defending_card.health <= 0:
 		if attacker.to_lower() == "player":
 			destroy_card(defending_card, "opponent")
 		else:
 			destroy_card(defending_card, "player")
+		card_destroyed = true
 
-func destroy_card(card, card_owner):
-	pass
+func destroy_card(card, card_owner: String):
+	var new_pos
+	if card_owner.to_lower() == "player":
+		new_pos = $"../PlayerDiscard".position
+	else:
+		new_pos = $"../EnemyDiscard".position
+	
+	var tween = create_tween()
+	tween.tween_property(card, "position", new_pos, CARD_MOVE_SPEED)
 
 func direct_attack(attacking_card,attacker: String) -> void:
 	var new_pos_y
