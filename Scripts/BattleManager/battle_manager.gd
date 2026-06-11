@@ -2,6 +2,7 @@ extends Node
 
 const SMALL_CARD_SCALE = 0.6
 const CARD_MOVE_SPEED = 0.2
+const INTIAL_HP: int = 10
 
 @onready var end_turn_btn:Button = %EndTurnBtn
 
@@ -9,7 +10,14 @@ var empty_monster_card_slots = []
 var opponent_cards_on_battlefield = []
 var player_cards_on_battlefield = []
 
+var player_hp: int
+var enemy_hp: int
+
 func _ready() -> void:
+	player_hp = INTIAL_HP
+	enemy_hp = INTIAL_HP
+	$"../PlayerHP".text = str(player_hp)
+	$"../EnemyHP".text = str(enemy_hp)
 	for card_slot in $"../EnemyCardSlots".get_children():
 		empty_monster_card_slots.append(card_slot)
 
@@ -47,8 +55,22 @@ func direct_attack(attacking_card,attacker: String) -> void:
 		new_pos_y = 0
 	
 	var new_pos = Vector2(attacking_card.position.x, new_pos_y)
+	attacking_card.z_index = 5
 	var tween = create_tween()
 	tween.tween_property(attacking_card,"global_position",new_pos,CARD_MOVE_SPEED)
+	
+	await get_tree().create_timer(0.15).timeout
+	
+	if attacker.to_lower() == "opponent":
+		pass
+	else:
+		pass
+	
+	var tween2 = create_tween()
+	tween2.tween_property(attacking_card,"global_position",attacking_card.card_slot.position,CARD_MOVE_SPEED)
+	await get_tree().create_timer(1.0).timeout
+	
+	attacking_card.z_index = 5
 
 func try_max_dmg_play_card() -> void:
 	var enemy_hand = %EnemyHand.enemy_hand
@@ -69,6 +91,7 @@ func try_max_dmg_play_card() -> void:
 	max_attack_card.play_flip_animation()
 	
 	%EnemyHand.remove_card_from_hand(max_attack_card)
+	max_attack_card.card_slot = random_empty_monster_card_slot
 	opponent_cards_on_battlefield.append(max_attack_card)
 	await get_tree().create_timer(1.0).timeout
 
@@ -76,6 +99,3 @@ func end_enemy_turn() -> void:
 	%Deck.reset_draw()
 	end_turn_btn.visible = true
 	end_turn_btn.disabled = false
-
-func wait(wait_time):
-	pass
