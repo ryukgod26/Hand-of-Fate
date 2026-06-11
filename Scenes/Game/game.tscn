@@ -192,6 +192,10 @@ offset_bottom = 470.0
 scale = Vector2(2, 2)
 text = "0"
 
+[node name="PlayerDiscard" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerDiscard"]
+
 [connection signal="left_mouse_btn_pressed" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_pressed"]
 [connection signal="left_mouse_btn_released" from="InputManager" to="CardsManager" method="_on_input_manager_left_mouse_btn_released"]
 [connection signal="pressed" from="EndTurnBtn" to="BattleManager" method="_on_end_turn_btn_pressed"]

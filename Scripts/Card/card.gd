@@ -6,6 +6,10 @@ signal hovered_off
 var starting_position
 var card_slot
 var card_type
+var health:
+	set(new_val):
+		health = new_val
+		$Health.text = str(health)
 
 func _ready() -> void:
 	get_parent().connect_card_signals(self)
