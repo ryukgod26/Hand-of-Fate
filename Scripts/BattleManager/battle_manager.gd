@@ -24,6 +24,7 @@ func _ready() -> void:
 		empty_monster_card_slots.append(card_slot)
 
 func _on_end_turn_btn_pressed() -> void:
+	player_cards_attacked_this_turn = []
 	enemy_turn()
 
 func enemy_turn() -> void:
@@ -79,11 +80,15 @@ func attack(attacking_card, defending_card, attacker) -> void:
 func destroy_card(card, card_owner: String):
 	var new_pos
 	if card_owner.to_lower() == "player":
+		card.get_node("Area2D/CollisionShape2D").disabled = false
 		new_pos = $"../PlayerDiscard".position
 		if card in player_cards_on_battlefield:
 			player_cards_on_battlefield.erase(card)
+		card.card_slot.get_node("Area2D/CollisionShape2D").disabled = false
 	else:
 		new_pos = $"../EnemyDiscard".position
+		if card in opponent_cards_on_battlefield:
+			opponent_cards_on_battlefield.erase(card)
 	card.card_slot.card_in_slot = false
 	card.card_slot = null
 	var tween = create_tween()

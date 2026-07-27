@@ -102,6 +102,7 @@ func finish_drag() -> void:
 				card_being_dragged.position = card_slot_found.position
 				#card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 				card_slot_found.card_in_slot = true
+				card_slot_found.get_node("Area2D/CollisionShape2D").disabled = true
 				%BattleManager.player_cards_on_battlefield.append(card_being_dragged)
 				card_being_dragged = null
 				return
@@ -122,15 +123,15 @@ func card_clicked(card):
 func select_card_for_battle(card):
 	if selected_monster:
 		if selected_monster == card:
-			card.position += 20
+			card.position.y += 20
 			selected_monster = null
 		else:
 			selected_monster.position += 20
 			selected_monster = card
-			card.position -= 20
+			card.position.y -= 20
 	else:
 		selected_monster = card
-		card.position -= 20
+		card.position.y -= 20
 
 func raycast_check_for_card_slot() -> Node2D:
 	var space_state = get_world_2d().direct_space_state
