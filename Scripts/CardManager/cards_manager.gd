@@ -105,6 +105,9 @@ func finish_drag() -> void:
 	%PlayerHand.add_card_to_hand(card_being_dragged,%PlayerHand.DEFAULT_CARD_DRAW_SPEED)
 	card_being_dragged = null
 
+func card_clicked(card):
+	
+
 func raycast_check_for_card_slot() -> Node2D:
 	var space_state = get_world_2d().direct_space_state
 	var parameters = PhysicsPointQueryParameters2D.new()

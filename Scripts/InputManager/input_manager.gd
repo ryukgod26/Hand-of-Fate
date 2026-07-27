@@ -31,6 +31,6 @@ func raycast_check():
 			#print("Dragging Card")
 			var card_found = result[0].collider.get_parent()
 			if card_found:
-				cards_manager.start_drag(card_found)
+				cards_manager.card_clicked(card_found)
 		elif result_collidion_mask & COLLISION_MASK_DECK:
 			deck.draw_card()

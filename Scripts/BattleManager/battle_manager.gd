@@ -76,9 +76,12 @@ func destroy_card(card, card_owner: String):
 	var new_pos
 	if card_owner.to_lower() == "player":
 		new_pos = $"../PlayerDiscard".position
+		if card in player_cards_on_battlefield:
+			player_cards_on_battlefield.erase(card)
 	else:
 		new_pos = $"../EnemyDiscard".position
-	
+	card.card_slot.card_in_slot = false
+	card.card_slot = null
 	var tween = create_tween()
 	tween.tween_property(card, "position", new_pos, CARD_MOVE_SPEED)
 
