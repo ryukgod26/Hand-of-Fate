@@ -10,6 +10,7 @@ var card_being_dragged: Node2D
 var screen_size: Vector2
 var is_hovering_on_card: bool
 var play_monster_card_this_turn := false
+var selected_monster
 
 func _ready() -> void:
 	screen_size = get_viewport_rect().size
@@ -106,7 +107,27 @@ func finish_drag() -> void:
 	card_being_dragged = null
 
 func card_clicked(card):
-	
+	if card.card_slot:
+		if %BattleManager.opponent_cards_on_battlefield.size() == 0:
+			%BattleManager.direct_attack(card, "Player")
+			return
+		else:
+			select_card_for_battle(card)
+	else:
+		start_drag(card)
+
+func select_card_for_battle(card):
+	if selected_monster:
+		if selected_monster == card:
+			card.position += 20
+			selected_monster = null
+		else:
+			selected_monster.position += 20
+			selected_monster = card
+			card.position -= 20
+	else:
+		selected_monster = card
+		card.position -= 20
 
 func raycast_check_for_card_slot() -> Node2D:
 	var space_state = get_world_2d().direct_space_state
