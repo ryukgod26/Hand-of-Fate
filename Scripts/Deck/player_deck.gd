@@ -33,6 +33,8 @@ func draw_card():
 	var card_image_path = str("res://assets/Aseprite/Cards/"+ card_drawn +".png")
 	new_card.get_node("CardImage").texture = load(card_image_path)
 	new_card.global_position = global_position
+	new_card.health = cards_database.CARDS[card_drawn][1]
+	new_card.attack = cards_database.CARDS[card_drawn][0]
 	new_card.get_node("Attack").text = str(cards_database.CARDS[card_drawn][0])
 	new_card.get_node("Health").text = str(cards_database.CARDS[card_drawn][1])
 	new_card.card_type = cards_database.CARDS[card_drawn][2]

@@ -53,7 +53,7 @@ func attack(attacking_card, defending_card, attacker) -> void:
 	tween.tween_property(attacking_card, "position", new_pos, CARD_MOVE_SPEED)
 	await get_tree().create_timer(0.15).timeout
 	var tween2 = create_tween()
-	tween2.tween_property(attacking_card, "position", attacking_card.card_slot, CARD_MOVE_SPEED)
+	tween2.tween_property(attacking_card, "position", attacking_card.card_slot.position, CARD_MOVE_SPEED)
 	
 	defending_card.health = max(0, defending_card.health - attacking_card.attack)
 	attacking_card.health = max(0, attacking_card.health - defending_card.health)

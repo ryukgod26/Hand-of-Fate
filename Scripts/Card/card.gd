@@ -10,6 +10,10 @@ var health:
 	set(new_val):
 		health = new_val
 		$Health.text = str(health)
+var attack:
+	set(new_val):
+		attack = new_val
+		$Attack.text = str(attack)
 
 func _ready() -> void:
 	get_parent().connect_card_signals(self)
