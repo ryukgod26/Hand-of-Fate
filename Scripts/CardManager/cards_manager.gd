@@ -48,6 +48,8 @@ func connect_card_signals(card: Node2D) -> void:
 	card.connect("hovered_off",_on_card_hovered_off)
 
 func _on_card_hovered_on(card: Node2D) -> void:
+	if card.card_slot:
+		return
 	if not is_hovering_on_card:
 		highlight_card(card,true)
 		is_hovering_on_card = true
@@ -98,7 +100,7 @@ func finish_drag() -> void:
 				is_hovering_on_card = false
 				%PlayerHand.remove_card_from_hand(card_being_dragged)
 				card_being_dragged.position = card_slot_found.position
-				card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
+				#card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 				card_slot_found.card_in_slot = true
 				%BattleManager.player_cards_on_battlefield.append(card_being_dragged)
 				card_being_dragged = null
@@ -108,11 +110,12 @@ func finish_drag() -> void:
 
 func card_clicked(card):
 	if card.card_slot:
-		if %BattleManager.opponent_cards_on_battlefield.size() == 0:
-			%BattleManager.direct_attack(card, "Player")
-			return
-		else:
-			select_card_for_battle(card)
+		if card not in %BattleManager.player_cards_attacked_this_turn:
+			if %BattleManager.opponent_cards_on_battlefield.size() == 0:
+				%BattleManager.direct_attack(card, "Player")
+				return
+			else:
+				select_card_for_battle(card)
 	else:
 		start_drag(card)
 

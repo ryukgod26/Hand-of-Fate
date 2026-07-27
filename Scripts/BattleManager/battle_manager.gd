@@ -10,6 +10,7 @@ const BATTLE_POS_OFFSET = 25
 var empty_monster_card_slots = []
 var opponent_cards_on_battlefield = []
 var player_cards_on_battlefield = []
+var player_cards_attacked_this_turn = []
 
 var player_hp: int
 var enemy_hp: int
@@ -47,6 +48,9 @@ func enemy_turn() -> void:
 	end_enemy_turn()
 
 func attack(attacking_card, defending_card, attacker) -> void:
+	if attacker == "Player":
+		player_cards_attacked_this_turn.append(attacking_card)
+	
 	attacking_card.z_index = 5
 	var new_pos = Vector2(defending_card.position.x, defending_card.position.y + BATTLE_POS_OFFSET)
 	var tween = create_tween()
@@ -91,6 +95,7 @@ func direct_attack(attacking_card,attacker: String) -> void:
 		new_pos_y = 1080
 	else:
 		new_pos_y = 0
+		player_cards_attacked_this_turn.append(attacking_card)
 	
 	var new_pos = Vector2(attacking_card.position.x, new_pos_y)
 	attacking_card.z_index = 5
