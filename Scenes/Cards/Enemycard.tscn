@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ds6iebt68pr0c"]
+[gd_scene load_steps=8 format=3 uid="uid://ds6iebt68pr0c"]
 
 [ext_resource type="Script" uid="uid://b4ox8ugwqrnih" path="res://Scripts/Card/enemy_card.gd" id="1_a5v7u"]
 [ext_resource type="Texture2D" uid="uid://bxisyrvwgodhf" path="res://assets/Aseprite/Deck/test_deck.png" id="2_vq0ud"]
@@ -162,6 +162,9 @@ _data = {
 &"card_flip": SubResource("Animation_ws51j")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a5v7u"]
+size = Vector2(64, 96)
+
 [node name="Card" type="Node2D"]
 position = Vector2(1780, 125)
 script = ExtResource("1_a5v7u")
@@ -199,3 +202,10 @@ metadata/_edit_use_anchors_ = true
 libraries = {
 &"": SubResource("AnimationLibrary_ylnsc")
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_a5v7u")

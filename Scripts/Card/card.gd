@@ -14,6 +14,7 @@ var attack:
 	set(new_val):
 		attack = new_val
 		$Attack.text = str(attack)
+var defeated = false
 
 func _ready() -> void:
 	get_parent().connect_card_signals(self)

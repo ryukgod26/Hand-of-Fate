@@ -15,6 +15,9 @@ var player_cards_attacked_this_turn = []
 var player_hp: int
 var enemy_hp: int
 
+var is_opponents_turn := false
+var player_is_atacking = false
+
 func _ready() -> void:
 	player_hp = INTIAL_HP
 	enemy_hp = INTIAL_HP
@@ -24,6 +27,8 @@ func _ready() -> void:
 		empty_monster_card_slots.append(card_slot)
 
 func _on_end_turn_btn_pressed() -> void:
+	is_opponents_turn = true
+	%CardsManager.unselect_selected_monster()
 	player_cards_attacked_this_turn = []
 	enemy_turn()
 
@@ -50,6 +55,8 @@ func enemy_turn() -> void:
 
 func attack(attacking_card, defending_card, attacker) -> void:
 	if attacker == "Player":
+		player_is_atacking = true
+		%CardsManager.selected_monster = null
 		player_cards_attacked_this_turn.append(attacking_card)
 	
 	attacking_card.z_index = 5
@@ -76,10 +83,14 @@ func attack(attacking_card, defending_card, attacker) -> void:
 		else:
 			destroy_card(defending_card, "player")
 		card_destroyed = true
+	
+	if attacker == "player":
+		player_is_atacking = false
 
 func destroy_card(card, card_owner: String):
 	var new_pos
 	if card_owner.to_lower() == "player":
+		card.defeated = true
 		card.get_node("Area2D/CollisionShape2D").disabled = false
 		new_pos = $"../PlayerDiscard".position
 		if card in player_cards_on_battlefield:
@@ -99,6 +110,7 @@ func direct_attack(attacking_card,attacker: String) -> void:
 	if attacker.to_lower() == "opponent":
 		new_pos_y = 1080
 	else:
+		player_is_atacking = true
 		new_pos_y = 0
 		player_cards_attacked_this_turn.append(attacking_card)
 	
@@ -121,6 +133,9 @@ func direct_attack(attacking_card,attacker: String) -> void:
 	attacking_card.z_index = 5
 	
 	await get_tree().create_timer(1.0).timeout
+	
+	if attacker.to_lower() == "player":
+		player_is_atacking = false
 
 func try_max_dmg_play_card() -> void:
 	var enemy_hand = %EnemyHand.enemy_hand
@@ -147,5 +162,13 @@ func try_max_dmg_play_card() -> void:
 
 func end_enemy_turn() -> void:
 	%Deck.reset_draw()
+	is_opponents_turn = false
 	end_turn_btn.visible = true
 	end_turn_btn.disabled = false
+
+func enemy_card_selected(defending_card):
+	var attacking_card = %CardsManager.selected_monster
+	if attacking_card:
+		if defending_card in opponent_cards_on_battlefield:
+			if player_is_atacking == false:
+				attack(attacking_card,defending_card, "Player")

@@ -55,6 +55,8 @@ func _on_card_hovered_on(card: Node2D) -> void:
 		is_hovering_on_card = true
 
 func _on_card_hovered_off(card: Node2D) -> void:
+	if card.defeated:
+		return
 	if not card.card_slot:
 		highlight_card(card,false)
 		var new_card_hovered = raycast_check_for_card()
@@ -111,14 +113,21 @@ func finish_drag() -> void:
 
 func card_clicked(card):
 	if card.card_slot:
-		if card not in %BattleManager.player_cards_attacked_this_turn:
-			if %BattleManager.opponent_cards_on_battlefield.size() == 0:
-				%BattleManager.direct_attack(card, "Player")
-				return
-			else:
-				select_card_for_battle(card)
+		if %BattleManager.is_opponent_turn == false:
+			if %BattleManager.player_is_atacking == false:
+				if card not in %BattleManager.player_cards_attacked_this_turn:
+					if %BattleManager.opponent_cards_on_battlefield.size() == 0:
+						%BattleManager.direct_attack(card, "Player")
+						return
+					else:
+						select_card_for_battle(card)
 	else:
 		start_drag(card)
+
+func unselect_selected_monster():
+	if selected_monster:
+		selected_monster.position.y += 20
+		selected_monster = null
 
 func select_card_for_battle(card):
 	if selected_monster:

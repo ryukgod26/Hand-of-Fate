@@ -1,6 +1,7 @@
 extends Node2D
 
 const COLLISION_MASK_DECK = 4
+const COLLISION_MASK_OPPONENT_CARD = 8
 
 @onready var cards_manager: Node2D = %CardsManager
 @onready var deck: Node2D = %Deck
@@ -34,3 +35,5 @@ func raycast_check():
 				cards_manager.card_clicked(card_found)
 		elif result_collidion_mask & COLLISION_MASK_DECK:
 			deck.draw_card()
+		elif result_collidion_mask == COLLISION_MASK_OPPONENT_CARD: 
+			%BattleManager.enemy_card_selected(result[0].collider.get_parent())
