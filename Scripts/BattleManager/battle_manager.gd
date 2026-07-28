@@ -56,6 +56,8 @@ func enemy_turn() -> void:
 func attack(attacking_card, defending_card, attacker) -> void:
 	if attacker == "Player":
 		player_is_atacking = true
+		end_turn_btn.visible = false
+		end_turn_btn.disabled = true
 		%CardsManager.selected_monster = null
 		player_cards_attacked_this_turn.append(attacking_card)
 	
@@ -86,6 +88,8 @@ func attack(attacking_card, defending_card, attacker) -> void:
 	
 	if attacker == "player":
 		player_is_atacking = false
+		end_turn_btn.visible = true
+		end_turn_btn.disabled = false
 
 func destroy_card(card, card_owner: String):
 	var new_pos
@@ -110,6 +114,8 @@ func direct_attack(attacking_card,attacker: String) -> void:
 	if attacker.to_lower() == "opponent":
 		new_pos_y = 1080
 	else:
+		end_turn_btn.visible = false
+		end_turn_btn.disabled = true
 		player_is_atacking = true
 		new_pos_y = 0
 		player_cards_attacked_this_turn.append(attacking_card)
@@ -136,6 +142,8 @@ func direct_attack(attacking_card,attacker: String) -> void:
 	
 	if attacker.to_lower() == "player":
 		player_is_atacking = false
+		end_turn_btn.visible = true
+		end_turn_btn.disabled = false
 
 func try_max_dmg_play_card() -> void:
 	var enemy_hand = %EnemyHand.enemy_hand
@@ -171,4 +179,5 @@ func enemy_card_selected(defending_card):
 	if attacking_card:
 		if defending_card in opponent_cards_on_battlefield:
 			if player_is_atacking == false:
+				%CardsManager.selected_monster = null
 				attack(attacking_card,defending_card, "Player")
